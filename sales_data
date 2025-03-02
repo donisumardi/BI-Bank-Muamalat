@@ -1,0 +1,15 @@
+---Membuat Tabel Master.
+SELECT 
+    c.CustomerEmail, 
+    c.CustomerCity, 
+    o.Date AS OrderDate, 
+    o.Quantity AS OrderQty, 
+    p.ProdName AS ProductName, 
+    p.Price AS ProductPrice, 
+    pc.CategoryName AS ProductCategoryName, 
+    (o.Quantity * p.Price) AS TotalSales
+FROM sales_data.Orders AS o
+JOIN sales_data.Customers AS c ON o.CustomerID = c.CustomerID
+JOIN sales_data.Product AS p ON o.ProdNumber = p.ProdNumber
+JOIN sales_data.ProductCategory AS pc ON p.Category = pc.CategoryID
+ORDER BY o.Date;
